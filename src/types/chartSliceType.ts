@@ -1,4 +1,5 @@
 export type ChartSliceType = {
+    chartTitle: ECategoryName | ''
     products: ProductType[]
     status: EStatus | null
     error: any

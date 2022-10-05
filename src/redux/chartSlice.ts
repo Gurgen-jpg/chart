@@ -1,10 +1,11 @@
 import {ChartSliceType, ECategoryName, EStatus} from "../types/chartSliceType";
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {prodAPI} from "../api/productApi";
 
 
 const initialState = {
     products:[],
+    chartTitle: '',
     status: null,
     error: null
 } as ChartSliceType
@@ -22,7 +23,11 @@ export const fetchCategory = createAsyncThunk(
 const chartSlice = createSlice({
     name: 'chart',
     initialState,
-    reducers: {},
+    reducers: {
+        addTitle (state, action: PayloadAction<ECategoryName>){
+            state.chartTitle = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchCategory.pending, (state) => {
             state.status = EStatus.loading;
@@ -44,6 +49,6 @@ const chartSlice = createSlice({
     }
 })
 
-const {reducer} = chartSlice
-
+const { actions, reducer } = chartSlice
+export const { addTitle } = actions
 export default reducer;
