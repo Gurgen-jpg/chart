@@ -2,6 +2,7 @@
 .dropdownContainer {
     position: relative;
     display: inline-block;
+    align-self: flex-start;
 }
 
 .dropBtn {

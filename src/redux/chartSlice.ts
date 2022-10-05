@@ -4,7 +4,7 @@ import {prodAPI} from "../api/productApi";
 
 
 const initialState = {
-    products:[],
+    products: [],
     chartTitle: '',
     status: null,
     error: null
@@ -15,8 +15,7 @@ export const fetchCategory = createAsyncThunk(
     'chart/fetchCategory',
     async (category: ECategoryName) => {
         const response = await prodAPI.getCategory(category)
-        console.log(response)
-        return response
+        response
     }
 )
 
@@ -24,7 +23,7 @@ const chartSlice = createSlice({
     name: 'chart',
     initialState,
     reducers: {
-        addTitle (state, action: PayloadAction<ECategoryName>){
+        addTitle(state, action: PayloadAction<ECategoryName>) {
             state.chartTitle = action.payload
         }
     },
@@ -34,7 +33,6 @@ const chartSlice = createSlice({
             state.error = null
         })
         builder.addCase(fetchCategory.fulfilled, (state, action) => {
-            console.log("action", action)
             state.status = EStatus.success;
             state.products = action.payload.products;
         })
@@ -49,6 +47,6 @@ const chartSlice = createSlice({
     }
 })
 
-const { actions, reducer } = chartSlice
-export const { addTitle } = actions
+const {actions, reducer} = chartSlice
+export const {addTitle} = actions
 export default reducer;

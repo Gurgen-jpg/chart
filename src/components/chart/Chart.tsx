@@ -2,20 +2,30 @@ import React from 'react';
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from 'highcharts';
 import {useAppSelector} from "../../redux/store";
+import {EStatus} from "../../types/chartSliceType";
+import { SpinnerDotted } from 'spinners-react/lib/esm/SpinnerDotted';
 
 const Chart = () => {
     const title = useAppSelector(state => state.chart.chartTitle)
     const data = useAppSelector(state => state.chart.products)
+    const status = useAppSelector(state => state.chart.status)
 
     const format = data && data.map((el) => {
         return [el.title, el.rating]
     })
+    if (status === EStatus.loading) {
+        return <SpinnerDotted size={50} thickness={100} speed={100} color="#36ad47" />
+    }
 
     return (
         <div>
             <HighchartsReact
+                accessibility={false}
                 highcharts={Highcharts}
                 options={{
+                    accessibility: {
+                        enabled: false
+                    },
                     chart: {
                         type: 'column'
                     },
