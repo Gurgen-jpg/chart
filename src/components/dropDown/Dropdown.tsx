@@ -4,6 +4,7 @@ import ChartIcon from "../Icons/ChartIcon";
 import SmartPhoneIcon from "../Icons/SmartPhoneIcon";
 import TableIpadIcon from "../Icons/TableIpadIcon";
 import DropdownElement from "./DropdownElement";
+import {ECategoryName} from "../../types/chartSliceType";
 
 const Dropdown = () => {
     return (
@@ -21,11 +22,11 @@ const Dropdown = () => {
             </button>
             <div className={s.dropdownContent}>
                 <DropdownElement
-                    title={"Смартфоны"}
+                    title={ECategoryName.smartphones}
                     icon={<SmartPhoneIcon size="24px"/>}
                 />
                 <DropdownElement
-                    title={"Планшеты"}
+                    title={ECategoryName.laptops}
                     icon={<TableIpadIcon size="24px"/>}
                 />
             </div>
